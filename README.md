@@ -1,3 +1,5 @@
+## Fabrica 3D 👕👚
+
 Welcome! Click the link below to access it:
 
 [Visit Deployed Site](https://shirt3d98.netlify.app/)
@@ -5,7 +7,7 @@ Welcome! Click the link below to access it:
 
 ## <a name="introduction">🤖 Introduction</a>
 
-Create your own style with our new 3D Swag Customization App. Pick colors, add logos, and try AI designs to make your virtual swag unique. Built using React.js, Three.js, and OpenAI to show the usage of a 3D world with AI
+Create your own style with our new 3D Swag Customization App "Fabrica 3D". Pick colors, add logos, and try AI designs to make your virtual swag unique. Built using React.js, Three.js, and OpenAI to show the usage of a 3D world with AI
 
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
