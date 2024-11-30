@@ -36,7 +36,7 @@ html {
 }
 
 .editortabs-container {
-  @apply glassmorphism w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-1 py-4 gap-4;
+  @apply glassmorphism  w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-2 p-10 gap-12 ;
 }
 
 .filtertabs-container {
@@ -44,7 +44,7 @@ html {
 }
 
 .aipicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] rounded-md flex flex-col gap-4;
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[320px] h-[320px] rounded-md flex flex-col gap-4;
 }
 
 .aipicker-textarea {
@@ -52,7 +52,7 @@ html {
 }
 
 .filepicker-container {
-  @apply absolute left-full ml-3 glassmorphism p-3 w-[195px] h-[220px] flex flex-col rounded-md;
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[320px] h-[320px] flex flex-col rounded-md;
 }
 
 .filepicker-label {
@@ -60,7 +60,7 @@ html {
 }
 
 .tab-btn {
-  @apply w-14 h-14 flex justify-center items-center cursor-pointer select-none;
+  @apply w-20 h-20 flex justify-center items-center cursor-pointer select-none;
 }
 
 .glassmorphism {
@@ -78,7 +78,7 @@ input[type="file"] {
 }
 
 .sketch-picker {
-  width: 170px !important;
+  width: 320px !important;
   background: rgba(255, 255, 255, 0.25) !important;
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07) !important;
   backdrop-filter: blur(4px) !important;

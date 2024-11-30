@@ -58,7 +58,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('http://localhost:8080/api/v2/dalle', {
+      const response = await fetch('https://shirt-3d-store.onrender.com/api/v2/dalle', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -135,8 +135,8 @@ const Customizer = () => {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
-            <div className="flex items-center min-h-screen">
-              <div className="editortabs-container tabs">
+            <div className="flex  items-center min-h-screen">
+              <div className="editortabs-container tabs ">
                 {EditorTabs.map((tab) => (
                   <Tab 
                     key={tab.name}
@@ -163,7 +163,7 @@ const Customizer = () => {
           </motion.div>
 
           <motion.div
-            className='filtertabs-container'
+            className='filtertabs-container '
             {...slideAnimation("up")}
           >
             {FilterTabs.map((tab) => (
@@ -175,6 +175,17 @@ const Customizer = () => {
                 handleClick={() => handleActiveFilterTab(tab.name)}
               />
             ))}
+          </motion.div>
+          <motion.div
+            className="absolute mb-8 z-10 bottom-5 right-5"
+            {...fadeAnimation}
+          >
+            <CustomButton 
+              type="filled"
+              title="Download Shirt"
+              handleClick={() => downloadCanvasToImage()}
+              customStyles="w-fit  px-4 py-2.5 font-bold text-sm"
+            />
           </motion.div>
         </>
       )}

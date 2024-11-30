@@ -10,7 +10,7 @@ const Tab = ({tab,isFilterTab,isActiveTab,handleClick}) => {
   return (
     <div
     key={tab.name}
-    className={`tab-btn ${isFilterTab? 'rounded-full glassmorphism':'rounded-4'}`}
+    className={`tab-btn  ${isFilterTab? 'rounded-full glassmorphism':'rounded-4 '}`}
     onClick={handleClick} style={activeStyle}
     >
       <img src={tab.icon} alt={tab.name} className={`${isFilterTab?'w-2/3 h-2/3':'w-11/12 h-11/12'}`} />

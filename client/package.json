@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-three/drei": "^9.99.5",
     "@react-three/fiber": "^8.15.16",
+    "3d-shop": "file:",
     "framer-motion": "^11.0.8",
     "maath": "^0.10.7",
     "react": "^18.2.0",
