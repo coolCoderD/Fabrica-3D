@@ -3,7 +3,7 @@
 🚀 **Experience AI-powered 3D customization for apparel!**  
 
 🔗 **[Visit Fabrica 3D](https://shirt3d98.netlify.app/)**  
-🔗 **[Backend API (Render)](https://your-render-api.onrender.com/)**  
+
 
 ---
 
