@@ -1,61 +1,60 @@
 # **Fabrica 3D 👕👚**  
 
-Welcome! Click the link below to access the deployed site:  
+🚀 **Experience AI-powered 3D customization for apparel!**  
 
 🔗 **[Visit Fabrica 3D](https://shirt3d98.netlify.app/)**  
+🔗 **[Backend API (Render)](https://your-render-api.onrender.com/)**  
 
 ---
 
 ## **🤖 Introduction**  
 
-**Fabrica 3D** is an **AI-powered** 3D customization platform where you can **design your own unique swag**. Pick colors, add logos, and generate **AI-powered textures** to personalize your 3D shirts. This project showcases the power of **React.js, Three.js, and Stability AI** to blend **3D design with AI-driven creativity**.  
+**Fabrica 3D** is an **AI-powered 3D customization platform** that enables users to **design and personalize 3D apparel** effortlessly.  
+With real-time previews, AI-generated textures, and seamless customization, you can **create your dream design** in just a few clicks!  
+
+🔥 **Built with:** **React.js, Three.js, FastAPI, and AI-driven image generation** using **black-forest-labs/FLUX.1-dev** (Hugging Face).  
+### 🧠 **AI Integration:**  
+
+**`black-forest-labs/FLUX.1-dev`** *(A Stable Diffusion Model from Hugging Face, used for AI-powered image generation)*  
+
 
 ---
 
 ## **⚙️ Tech Stack**  
 
-### 🖥️ **Frontend:**  
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)  
-![React Three Fiber](https://img.shields.io/badge/React%20Three%20Fiber-000000?style=for-the-badge&logo=three.js&logoColor=white)  
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)  
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)  
-![Framer Motion](https://img.shields.io/badge/Framer_Motion-EF005C?style=for-the-badge&logo=framer&logoColor=white)  
-
-### 🛠️ **Backend:**  
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)  
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)  
-
-### 🧠 **AI Integration:**  
-![Stability AI](https://img.shields.io/badge/Stability%20AI-000000?style=for-the-badge&logo=stability%20ai&logoColor=white)  
-
-### 🗄 **State Management:**  
-![Valtio](https://img.shields.io/badge/Valtio-FF7B00?style=for-the-badge)  
+| **Category**       | **Tech Stack**                                                                                                                                                                                                 |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 🖥 **Frontend**    | ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)  ![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white) |
+| 🎨 **UI/Styling**  | ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer_Motion-EF005C?style=for-the-badge&logo=framer&logoColor=white) |
+| 🛠 **Backend**     | ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) ![Render](https://img.shields.io/badge/Deployed%20on-Render-46a2f1?style=for-the-badge)               |
+| 🤖 **AI Model**    | ![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFCC4D?style=for-the-badge&logo=huggingface&logoColor=white) ![FLUX.1-dev](https://img.shields.io/badge/black--forest--labs-FLUX.1--dev-gray?style=for-the-badge)|
+| 🗄 **State Mgmt**  | ![Valtio](https://img.shields.io/badge/Valtio-FF7B00?style=for-the-badge)                                                                                                                                    |
 
 ---
 
 ## **🔋 Features**  
 
-✔ **3D Swag Customization** – Design 3D shirts dynamically with real-time previews.  
+✔ **3D Swag Customization** – Design **3D shirts dynamically** with real-time previews.  
 
-✔ **Color Customization** – Apply any color to the 3D shirt to match your style.  
+✔ **Color Customization** – Apply any **custom color** to match your style.  
 
-✔ **Logo Upload** – Upload your own images and seamlessly place them on the 3D model.  
+✔ **Logo Upload** – Upload and seamlessly place **logos** on the 3D model.  
 
-✔ **Texture Image Upload** – Add textures to your shirt for enhanced design flexibility.  
+✔ **Texture Image Upload** – Add textures for **enhanced design flexibility**.  
 
-✔ **AI-Generated Logos & Textures** – Leverage **Stability AI** to create **unique, AI-powered logos and textures** for your swag.  
+✔ **AI-Generated Textures & Logos** – Powered by **black-forest-labs/FLUX.1-dev (Hugging Face)**.  
 
-✔ **Download Options** – Save your customized 3D designs directly to your device.  
+✔ **FastAPI Backend** – Secure and **fast API** built with **FastAPI**, deployed on **Render**.  
 
-✔ **Dynamic Theme Change** – The UI adapts based on your selected colors.  
+✔ **Download Designs** – Save your **custom 3D apparel designs** directly.  
 
-✔ **Fully Responsive 3D Interface** – Works smoothly on all devices.  
+✔ **Theme Adaptation** – UI changes dynamically based on **user preferences**.  
 
-✔ **Framer Motion Animations** – Enhances the experience with smooth transitions.  
+✔ **Fully Responsive 3D Interface** – Works **smoothly** on all devices.  
 
-…and much more, including **optimized code architecture and reusability**!  
+✔ **Framer Motion Animations** – Enhances UI experience with **smooth transitions**.  
+
+✔ **Deployed on Render & Netlify** – **Scalable** backend and frontend hosting.  
 
 ---
-
 
