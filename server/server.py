@@ -13,7 +13,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change this for better security
+    allow_origins=["http://localhost:5173", "https://shirt3d98.netlify.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
