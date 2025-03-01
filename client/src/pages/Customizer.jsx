@@ -33,44 +33,45 @@ const Customizer = () => {
     stylishShirt: false,
   })
   const [isDownloading, setIsDownloading] = useState(false);
+  const [preview, setPreview] = useState(null);
 
   const [selectedAnime, setSelectedAnime] = useState('');
   const editorRef = useRef(null);
 
   const handleThemeChange = (theme) => {
     console.log(theme);
-    setSelectedAnime((prev)=> theme===prev? "": theme);
+    setSelectedAnime((prev) => theme === prev ? "" : theme);
     handleDecals('logo', animeThemes[theme]);
   };
 
 
- const downloadCanvasToImage = async () => {
-  const canvasContainer = document.querySelector(".w-full.max-w-full.h-full"); // Select the canvas wrapper
-  
-  if (!canvasContainer) {
-    alert("Canvas container not found!");
-    return;
-  }
+  const downloadCanvasToImage = async () => {
+    const canvasContainer = document.querySelector(".w-full.max-w-full.h-full"); // Select the canvas wrapper
 
-  setIsDownloading(true); 
+    if (!canvasContainer) {
+      alert("Canvas container not found!");
+      return;
+    }
 
-  try {
-    const canvas = await html2canvas(canvasContainer, { useCORS: true });
-    const dataURL = canvas.toDataURL("image/png");
+    setIsDownloading(true);
 
-    const link = document.createElement("a");
-    link.href = dataURL;
-    link.download = "canvas_screenshot.png";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } catch (error) {
-    console.error("Error capturing canvas:", error);
-  }
-  finally {
-    setIsDownloading(false); // Stop downloading state
-  }
-};
+    try {
+      const canvas = await html2canvas(canvasContainer, { useCORS: true });
+      const dataURL = canvas.toDataURL("image/png");
+
+      const link = document.createElement("a");
+      link.href = dataURL;
+      link.download = "canvas_screenshot.png";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error capturing canvas:", error);
+    }
+    finally {
+      setIsDownloading(false); // Stop downloading state
+    }
+  };
 
 
 
@@ -88,15 +89,17 @@ const Customizer = () => {
           setFile={setFile}
           readFile={readFile}
           removeFile={removeFile}
+          preview={preview}
+          setPreview={setPreview}
         />
       case "aipicker":
-        return <AIPicker 
+        return <AIPicker
           prompt={prompt}
           setPrompt={setPrompt}
           generatingImg={generatingImg}
           handleSubmit={handleSubmit}
         />
-        case "logoshapechanger":
+      case "logoshapechanger":
         return <ShapeChanger />
       default:
         return null;
@@ -124,41 +127,41 @@ const Customizer = () => {
     if (typeof prompt !== "string" || !prompt.trim()) {
       return alert("Please enter a valid prompt");
     }
-  
+
     console.log("Asking AI, it will take some time...");
     const startTime = performance.now(); // Start time
-  
+
     try {
       setGeneratingImg(true);
-  
+
       // API call with responseType "blob"
       const response = await axios.post(
         "https://fabrica-3d.onrender.com/generate-image/",
-        { 
-          inputs: prompt,  
-          parameters: { num_inference_steps: 50 } 
+        {
+          inputs: prompt,
+          parameters: { num_inference_steps: 50 }
         },
         {
           headers: { "Content-Type": "application/json" },
           responseType: "blob",  // Ensure response is binary data
         }
       );
-  
+
       const endTime = performance.now(); // End time
       const timeTaken = ((endTime - startTime) / 1000).toFixed(2); // Convert to seconds
-  
+
       console.log(`Done. Time taken: ${timeTaken} seconds`);
-  
+
       if (response.status === 402) {
         alert("Limit Reached");
         return;
       }
-  
+
       if (response.status !== 200) {
         const errorMessage = await response.data.text();  // Read error message
         throw new Error(`Error: ${response.status} - ${errorMessage}`);
       }
-  
+
       // Convert Blob to Base64 URL
       const blob = new Blob([response.data], { type: "image/png" });
       const reader = new FileReader();
@@ -167,9 +170,9 @@ const Customizer = () => {
         const base64Image = reader.result;
         handleDecals(type, base64Image);
       };
-  
+
       alert(`Image generated in ${timeTaken} seconds`);
-  
+
     } catch (error) {
       console.error("Error:", error);
       alert(`Failed to generate image: ${error.message}`);
@@ -178,27 +181,36 @@ const Customizer = () => {
       setActiveEditorTab("");
     }
   };
-  
-  
-  
+
+
+
   const handleDecals = (type, result) => {
+
+    if (type == 'no') {
+      state.isLogoTexture = false;
+      state.isFullTexture = false;
+      state.fullDecal = './threejs.png';
+      state.logoDecal = './threejs.png';
+      return;
+    }
     const decalType = DecalTypes[type];
     console.log(decalType.stateProperty, result);
 
     state[decalType.stateProperty] = result;
 
-    if(!activeFilterTab[decalType.filterTab]) {
+    if (!activeFilterTab[decalType.filterTab]) {
       handleActiveFilterTab(decalType.filterTab)
     }
   }
 
   const handleActiveFilterTab = (tabName) => {
     switch (tabName) {
+
       case "logoShirt":
-          state.isLogoTexture = !activeFilterTab[tabName];
+        state.isLogoTexture = !activeFilterTab[tabName];
         break;
       case "stylishShirt":
-          state.isFullTexture = !activeFilterTab[tabName];
+        state.isFullTexture = !activeFilterTab[tabName];
         break;
       default:
         state.isLogoTexture = true;
@@ -225,7 +237,18 @@ const Customizer = () => {
   }
 
   const removeFile = () => {
-    setFile(''); 
+    setFile('');
+    setPreview(null);
+    handleDecals('no');
+
+    if (activeFilterTab.logoShirt) {
+      handleActiveFilterTab('logoShirt');
+    }
+
+    if (activeFilterTab.stylishShirt) {
+      handleActiveFilterTab('stylishShirt');
+    }
+
   }
 
 
@@ -233,20 +256,20 @@ const Customizer = () => {
     <AnimatePresence>
       {!snap.intro && (
         <>
-       
+
           <motion.div
             key="custom"
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
             <div className="flex  items-center min-h-screen">
-              <div  ref={editorRef} className="editortabs-container tabs ">
+              <div ref={editorRef} className="editortabs-container tabs ">
                 {EditorTabs.map((tab) => (
-                  <Tab 
+                  <Tab
                     key={tab.name}
                     tab={tab}
                     handleClick={() => toggleEditorTab(tab.name)}
-                    isActiveTab={activeEditorTab===tab.name}
+                    isActiveTab={activeEditorTab === tab.name}
                   />
                 ))}
                 {generateTabContent()}
@@ -259,17 +282,17 @@ const Customizer = () => {
             {...slideAnimation('left')}
           >
             <div className="flex  items-center min-h-screen">
-            <div className="editortabs-container tabs">
-  {AnimeTabs.map((tab) => (
-    <Tab 
-      key={tab.name}
-      tab={tab}
-      handleClick={() => handleThemeChange(tab.name)}
-      isActiveTab={selectedAnime === tab.name}  // Fixed
-      isAnimeTab={true}
-    />
-  ))}
-</div>;
+              <div className="editortabs-container tabs">
+                {AnimeTabs.map((tab) => (
+                  <Tab
+                    key={tab.name}
+                    tab={tab}
+                    handleClick={() => handleThemeChange(tab.name)}
+                    isActiveTab={selectedAnime === tab.name}  // Fixed
+                    isAnimeTab={true}
+                  />
+                ))}
+              </div>;
             </div>
           </motion.div>
 
@@ -277,11 +300,11 @@ const Customizer = () => {
             className="absolute z-10 top-5 right-5"
             {...fadeAnimation}
           >
-            <CustomButton 
+            <CustomButton
               type="filled"
               title="Go Back"
               handleClick={() => state.intro = true}
-              customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+              customStyles="w-fit px-4 py-2.5 font-bold text-lg"
             />
           </motion.div>
 
@@ -303,18 +326,18 @@ const Customizer = () => {
             className="absolute mb-8 z-10 bottom-5 right-5"
             {...fadeAnimation}
           >
-<CustomButton 
-  type="filled"
-  title={isDownloading ? "Downloading..." : "Download Shirt"}
-  handleClick={downloadCanvasToImage}
-  disabled={isDownloading} // Disable button while downloading
-  customStyles={`w-fit px-4 py-2.5 font-bold text-sm
+            <CustomButton
+              type="filled"
+              title={isDownloading ? "Downloading..." : "Download Shirt"}
+              handleClick={downloadCanvasToImage}
+              disabled={isDownloading} // Disable button while downloading
+              customStyles={`w-fit px-4 py-2.5 font-bold text-lg
   ${isDownloading ? "bg-gray-400 animate-pulse" : ""}
   `}
-/>
+            />
 
           </motion.div>
-         
+
         </>
       )}
     </AnimatePresence>

@@ -64,7 +64,9 @@ html {
 }
 
 .filepicker-label {
-  @apply border border-gray-300 py-1.5 px-2 rounded-md shadow-sm text-lg text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-fit;
+  @apply border border-gray-300 py-3 px-5 rounded-md h-full w-full shadow-sm 
+         text-lg text-gray-300 focus:outline-none focus:ring-2 
+         focus:ring-blue-500 focus:border-blue-500 cursor-pointer;
 }
 
 .tab-btn {
@@ -72,11 +74,11 @@ html {
 }
 
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(0,0,0,0.25);
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(0, 0, 0, 0.18);
 }
 
 input[type="file"] {
