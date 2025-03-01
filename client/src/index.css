@@ -39,6 +39,10 @@ html {
   @apply glassmorphism  w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-2 p-10 gap-12 ;
 }
 
+.animetabs-container {
+  @apply glassmorphism bg-red-900 w-16 border-[2px] rounded-lg flex flex-col justify-center items-center ml-2 p-10 gap-12 ;
+}
+
 .filtertabs-container {
   @apply absolute z-10 bottom-5 right-0 left-0 w-full flex justify-center items-center flex-wrap gap-4;
 }
@@ -48,19 +52,23 @@ html {
 }
 
 .aipicker-textarea {
-  @apply w-full bg-transparent text-sm border border-gray-300 p-2 outline-none flex-1;
+  @apply w-full bg-transparent text-lg border border-gray-300 p-2 outline-none flex-1;
 }
 
 .filepicker-container {
   @apply absolute left-full ml-3 glassmorphism p-3 w-[320px] h-[320px] flex flex-col rounded-md;
 }
 
+.shapechanger-container {
+  @apply absolute left-full ml-3 glassmorphism p-3 w-[320px] justify-center items-center h-[320px] flex flex-col rounded-md;
+}
+
 .filepicker-label {
-  @apply border border-gray-300 py-1.5 px-2 rounded-md shadow-sm text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-fit;
+  @apply border border-gray-300 py-1.5 px-2 rounded-md shadow-sm text-lg text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 cursor-pointer w-fit;
 }
 
 .tab-btn {
-  @apply w-20 h-20 flex justify-center items-center cursor-pointer select-none;
+  @apply w-20 h-20 flex justify-center items-center cursor-pointer  select-none;
 }
 
 .glassmorphism {

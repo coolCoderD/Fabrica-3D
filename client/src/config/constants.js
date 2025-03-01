@@ -1,4 +1,4 @@
-import { swatch, fileIcon, ai, logoShirt, stylishShirt } from "../assets";
+import { swatch, fileIcon, ai, logoShirt, stylishShirt, naruto, tanjiro, luffy } from "../assets";
 
 export const EditorTabs = [
   {
@@ -12,7 +12,10 @@ export const EditorTabs = [
   {
     name: "aipicker",
     icon: ai,
-  },
+  },{
+    name:"logoshapechanger",
+    icon:ai,
+  }
 ];
 
 export const FilterTabs = [
@@ -36,3 +39,17 @@ export const DecalTypes = {
     filterTab: "stylishShirt",
   },
 };
+
+export const AnimeTabs = [
+  {
+    name: "naruto",
+    icon: naruto,
+  },
+  {
+    name: "demonSlayer",
+    icon: tanjiro,
+  },{
+    name: "onePiece",
+    icon: luffy,
+  }
+];

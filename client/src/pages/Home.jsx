@@ -24,23 +24,28 @@ const Home = () => {
                 </motion.header>
 
                 <motion.div className="home-content" {...headContainerAnimation}>
-                    <motion.div {...headTextAnimation}>
-                        <h1 className="text-white text-9xl font-black">
-                            LET'S <br className="xl:block hidde"/> DO IT.
-                        </h1>
-                    </motion.div>
-                    <motion.div {...headContentAnimation} className="flex flex-col gap-5">
-                    <p className="max-w-md font-normal text-white text-base">
-                    Create your unique and exclusive shirt with our brand-new 3D customization tool. <strong>Unleash your imagination</strong>{" "} and define your own style.
-                    </p>
-                    <CustomButton
-                    type="filled"
-                    title="Customize It"
-                    handleClick={() => state.intro = false}
-                    customStyles="w-fit px-4 py-2.5 font-bold text-sm"
-                    ></CustomButton>
-                    </motion.div>
-                </motion.div>
+    <motion.div {...headTextAnimation}>
+        <h1 className="text-white text-9xl font-black">
+            DESIGN <br className="xl:block hidden"/> YOUR WAY.
+        </h1>
+    </motion.div>
+    
+    <motion.div {...headContentAnimation} className="flex flex-col gap-5">
+        <p className="max-w-md font-normal text-white text-base">
+            Welcome to <strong>Fabrica 3D</strong> – your ultimate 3D customization platform.  
+            Create personalized, one-of-a-kind shirts with our interactive design tool. <br/> 
+            <strong>Express your creativity</strong> and craft the perfect look, just for you!
+        </p>
+        
+        <CustomButton
+            type="filled"
+            title="Start Designing"
+            handleClick={() => state.intro = false}
+            customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+        />
+    </motion.div>
+</motion.div>
+
             </motion.section>
         )}
     </AnimatePresence>
