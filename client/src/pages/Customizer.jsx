@@ -12,6 +12,7 @@ import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../compone
 import axios from 'axios';
 import html2canvas from "html2canvas";
 import ShapeChanger from '../components/ShapeChanger';
+import AnimeContainer from '../components/AnimeContainer';
 
 const animeThemes = {
   naruto: naruto,
@@ -39,8 +40,9 @@ const Customizer = () => {
   const editorRef = useRef(null);
 
   const handleThemeChange = (theme) => {
-    console.log(theme);
+   
     setSelectedAnime((prev) => theme === prev ? "" : theme);
+    console.log(selectedAnime)
     handleDecals('logo', animeThemes[theme]);
   };
 
@@ -78,6 +80,11 @@ const Customizer = () => {
   const toggleEditorTab = (tabName) => {
     setActiveEditorTab((prevTab) => (prevTab === tabName ? "" : tabName));
   };
+
+  const genrateAnimeTab=()=>{
+    console.log(selectedAnime.length)
+    if(selectedAnime.length!==0) return <AnimeContainer/>
+  }
   // show tab content depending on the activeTab
   const generateTabContent = () => {
     switch (activeEditorTab) {
@@ -256,7 +263,7 @@ const Customizer = () => {
     <AnimatePresence>
       {!snap.intro && (
         <>
-
+       
           <motion.div
             key="custom"
             className="absolute top-0 left-0 z-10"
@@ -277,11 +284,11 @@ const Customizer = () => {
             </div>
           </motion.div>
           <motion.div
-            key="custom"
+            key="customAnime"
             className="absolute top-0 right-0 z-10"
-            {...slideAnimation('left')}
+            {...slideAnimation('right')}
           >
-            <div className="flex  items-center min-h-screen">
+            <div className="flex   items-center min-h-screen">
               <div className="editortabs-container tabs">
                 {AnimeTabs.map((tab) => (
                   <Tab
@@ -292,6 +299,7 @@ const Customizer = () => {
                     isAnimeTab={true}
                   />
                 ))}
+                {genrateAnimeTab()}
               </div>;
             </div>
           </motion.div>
