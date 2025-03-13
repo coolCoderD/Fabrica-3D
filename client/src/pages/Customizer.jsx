@@ -16,6 +16,7 @@ import AnimeContainer from '../components/AnimeContainer';
 import { AnimePic } from '../config/constants';
 import AiBtn from '../components/AiBtn';
 import FashionPanel from '../components/Sidebar';
+import Tooltip from '../components/Tooltip';
 
 const animeThemes = {
   naruto: naruto,
@@ -336,15 +337,18 @@ const Customizer = () => {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
+
             <div className="flex  items-center min-h-screen">
               <div ref={editorRef} className="editortabs-container tabs ">
                 {EditorTabs.map((tab) => (
+                  <Tooltip key={tab.name} text={tab.tooltip}>
                   <Tab
                     key={tab.name}
                     tab={tab}
                     handleClick={() => toggleEditorTab(tab.name)}
                     isActiveTab={activeEditorTab === tab.name}
                   />
+                  </Tooltip>
                 ))}
                 {generateTabContent()}
               </div>

@@ -3,25 +3,35 @@ import narutoPics from '../assets/naruto/index'
 import demonSlayer from "../assets/demonSlayer/index";
 import onePiece from "../assets/onePiece/index";
 import { change } from "../assets";
+import Tooltip from "../components/Tooltip";
 
 
 export const EditorTabs = [
   {
     name: "colorpicker",
+
     icon: swatch,
+    tooltip: "Change the color of your design", // Example: Shortcut for quick access
   },
   {
     name: "filepicker",
+
     icon: fileIcon,
+    tooltip: "Upload an image",
   },
   {
     name: "aipicker",
     icon: ai,
-  },{
-    name:"logoshapechanger",
-    icon:change,
-  }
+    tooltip: "Ask AI for design recommendations",
+  },
+  {
+    name: "logoshapechanger",
+  
+    icon: change,
+    tooltip: "Modify the logo shape",
+  },
 ];
+
 
 export const FilterTabs = [
   {
