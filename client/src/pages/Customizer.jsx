@@ -5,7 +5,7 @@ import { useSnapshot } from 'valtio';
 import config from '../config/config';
 import state from '../store';
 import { download, luffy, naruto, tanjiro } from '../assets';
-import { reader } from '../config/helpers';
+import { getFashionRecommendation, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes, AnimeTabs } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
@@ -13,6 +13,9 @@ import axios from 'axios';
 import html2canvas from "html2canvas";
 import ShapeChanger from '../components/ShapeChanger';
 import AnimeContainer from '../components/AnimeContainer';
+import { AnimePic } from '../config/constants';
+import AiBtn from '../components/AiBtn';
+import FashionPanel from '../components/Sidebar';
 
 const animeThemes = {
   naruto: naruto,
@@ -20,8 +23,15 @@ const animeThemes = {
   onePiece: luffy,
 };
 
+const animeColors = {
+  naruto: "#FF9900", 
+  demonSlayer: "#2E8B57", 
+  onePiece: "#1E90FF",
+};
+
 const Customizer = () => {
   const snap = useSnapshot(state);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [file, setFile] = useState('');
 
@@ -35,18 +45,48 @@ const Customizer = () => {
   })
   const [isDownloading, setIsDownloading] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [recommendations, setRecommendations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [selectedAnime, setSelectedAnime] = useState('');
   const editorRef = useRef(null);
+  const animeRef=useRef(null);
 
-  const handleThemeChange = (theme) => {
-   
-    setSelectedAnime((prev) => theme === prev ? "" : theme);
-    console.log(selectedAnime)
-    handleDecals('logo', animeThemes[theme]);
+  const animeColors = {
+    naruto: "#FF9900", // Orange (Naruto's theme)
+    demonSlayer: "#2E8B57", // Green (Tanjiro's haori)
+    onePiece: "#1E90FF", // Blue (Luffy's outfit)
   };
+  
+  const handleThemeChange = (theme) => {
+    if (selectedAnime === theme) {
+      setSelectedAnime(""); 
+      state.color = "#EFBD48"; 
+    } else {
+      setSelectedAnime(theme);
+      state.color = animeColors[theme]; // Set corresponding anime color
+    }
+  
+    handleDecals("logo", animeThemes[theme]);
+       
+  };
+  
 
+  const loadImageWithCORS = (url) => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = "anonymous"; // Enables CORS
+      img.src = url;
+      
+      img.onload = () => resolve(img);
+      img.onerror = (err) => reject(err);
+    });
+  };
+  
 
+  
+  
+  
   const downloadCanvasToImage = async () => {
     const canvasContainer = document.querySelector(".w-full.max-w-full.h-full"); // Select the canvas wrapper
 
@@ -83,7 +123,7 @@ const Customizer = () => {
 
   const genrateAnimeTab=()=>{
     console.log(selectedAnime.length)
-    if(selectedAnime.length!==0) return <AnimeContainer/>
+    if(selectedAnime.length!==0) return <AnimeContainer pics={AnimePic[selectedAnime]} handleDecals={handleDecals}/>
   }
   // show tab content depending on the activeTab
   const generateTabContent = () => {
@@ -114,19 +154,28 @@ const Customizer = () => {
   }
 
   const handleClickOutside = (event) => {
-    if (editorRef.current && !editorRef.current.contains(event.target)) {
-      setActiveEditorTab(""); // Close the editor tab if clicked outside
+    if (
+      editorRef.current && !editorRef.current.contains(event.target)
+    ) {
+      setActiveEditorTab(""); // Close editor tab
+    
+    }
+    if(
+      animeRef.current && !animeRef.current.contains(event.target)
+    ){
+      setSelectedAnime("");
     }
   };
+  
 
   useEffect(() => {
-    if (activeEditorTab) {
+    if (activeEditorTab || selectedAnime.length!==0) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [activeEditorTab]);
+  }, [activeEditorTab,selectedAnime]);
 
 
 
@@ -259,6 +308,24 @@ const Customizer = () => {
   }
 
 
+  const fetchRecommendation = async () => {
+    setIsLoading(true); // Start loading
+    try {
+      console.log(snap.color);
+      const recommendation = await getFashionRecommendation(snap.color);
+      
+      if (recommendation) {
+        setRecommendations(recommendation);
+        setIsOpen(true); // Open sidebar only when data is set
+      }
+    } catch (error) {
+      console.error("Error fetching recommendations:", error);
+    } finally {
+      setIsLoading(false); // Stop loading
+    }
+  };
+
+
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -289,7 +356,7 @@ const Customizer = () => {
             {...slideAnimation('right')}
           >
             <div className="flex   items-center min-h-screen">
-              <div className="editortabs-container tabs">
+              <div ref={animeRef}  className="editortabs-container tabs">
                 {AnimeTabs.map((tab) => (
                   <Tab
                     key={tab.name}
@@ -331,9 +398,17 @@ const Customizer = () => {
             ))}
           </motion.div>
           <motion.div
-            className="absolute mb-8 z-10 bottom-5 right-5"
+            className="absolute mb-8 z-10 flex gap-5 bottom-5 right-5"
             {...fadeAnimation}
           >
+
+<AiBtn text={"Get Recommendations"}
+            isLoading={isLoading}
+            OnClick={()=>{
+              fetchRecommendation();
+              
+            }}/>
+            <FashionPanel  recommendations={recommendations} isOpen={isOpen} onClose={() => setIsOpen(false)} />
             <CustomButton
               type="filled"
               title={isDownloading ? "Downloading..." : "Download Shirt"}
@@ -343,6 +418,7 @@ const Customizer = () => {
   ${isDownloading ? "bg-gray-400 animate-pulse" : ""}
   `}
             />
+
 
           </motion.div>
 

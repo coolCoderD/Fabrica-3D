@@ -52,8 +52,15 @@ html {
 }
 
 .anime-container {
-  @apply absolute right-full mr-3 glassmorphism p-3 w-[320px] h-[320px] rounded-md flex flex-col gap-4;
+  @apply absolute right-full mr-3 glassmorphism p-3 
+    w-[420px] h-[520px] rounded-md 
+     gap-3 justify-center;
+
+    
 }
+
+
+
 
 .aipicker-textarea {
   @apply w-full bg-transparent text-lg border border-gray-300 p-2 outline-none flex-1;

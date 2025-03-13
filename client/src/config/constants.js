@@ -1,4 +1,9 @@
 import { swatch, fileIcon, ai, logoShirt, stylishShirt, naruto, tanjiro, luffy } from "../assets";
+import narutoPics from '../assets/naruto/index'
+import demonSlayer from "../assets/demonSlayer/index";
+import onePiece from "../assets/onePiece/index";
+import { change } from "../assets";
+
 
 export const EditorTabs = [
   {
@@ -14,7 +19,7 @@ export const EditorTabs = [
     icon: ai,
   },{
     name:"logoshapechanger",
-    icon:ai,
+    icon:change,
   }
 ];
 
@@ -53,3 +58,11 @@ export const AnimeTabs = [
     icon: luffy,
   }
 ];
+
+export const AnimePic = {
+  naruto: Object.values(narutoPics),
+  demonSlayer: Object.values(demonSlayer),
+  onePiece: Object.values(onePiece),
+};
+
+
