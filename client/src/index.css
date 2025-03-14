@@ -111,3 +111,223 @@ input[type="file"] {
 .sketch-picker > div:nth-child(3) {
   display: none !important;
 }
+
+@keyframes glow {
+  0% { opacity: 0.3; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.5); }
+  100% { opacity: 0.3; transform: scaleX(1); }
+}
+
+.animate-glow {
+  animation: glow 1.8s infinite ease-in-out;
+}
+
+.button {
+  --black-700: hsla(0 0% 12% / 1);
+  --border_radius: 10px;
+  --transtion: 0.3s ease-in-out;
+  --offset: 2px;
+
+  cursor: pointer;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  transform-origin: center;
+
+  padding: 0.6rem 0.7rem;
+  background-color: transparent;
+
+  border: none;
+  border-radius: var(--border_radius);
+
+
+  transition: transform var(--transtion);
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-700);
+
+  border-radius: var(--border_radius);
+box-shadow: inset 0 0.5px hsl(0, 0%, 100%), 
+          inset 0 -1px 2px 0 hsl(0, 0%, 0%), 
+          0px 4px 10px -4px hsla(0, 0%, 0%, calc(1 - var(--active, 0)));
+
+  transition: all var(--transtion);
+  z-index: 0;
+}
+
+.button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  height: 100%;
+  background-color: none;
+  background-position: top;
+  opacity: var(--active, 0);
+  border-radius: var(--border_radius);
+  transition: opacity var(--transtion);
+  z-index: 2;
+}
+
+.button:is(:hover) {
+  --active: 1;
+}
+.button:active {
+  transform: scale(1);
+}
+
+.button .dots_border {
+  --size_border: calc(100% + 2px);
+
+  overflow: hidden;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: var(--size_border);
+  height: var(--size_border);
+background: linear-gradient(45deg,
+  #2A6BA5,
+  #3685CC,
+  #B0CFEB,
+  #00B2A5,
+  #D9E8F5,
+  #FF8256,
+  #B0CFEB,
+  #3685CC,
+  #2A6BA5
+);
+
+background-size: 300%;
+border-radius: var(--border_radius);
+z-index: -10;
+animation: glowing 5s linear infinite;
+}
+
+.button .dots_border::before {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: left;
+  transform: rotate(0deg);
+
+  width: 100%;
+  height: 2rem;
+background: linear-gradient(45deg,
+  #2A6BA5,
+  #3685CC,
+  #B0CFEB,
+  #00B2A5,
+  #D9E8F5,
+  #FF8256,
+  #B0CFEB,
+  #3685CC,
+  #2A6BA5
+);
+
+background-size: 300%;
+
+  mask: linear-gradient(transparent 0%, white 120%);
+  animation: rotate 5s linear infinite;
+}
+
+
+@keyframes glowing {
+0% {
+  background-position: 0% 0%;
+}
+50% {
+  background-position: 200% 0%;
+}
+100% {
+  background-position: 0% 0%;
+}
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.button .sparkle {
+  position: relative;
+  z-index: 10;
+
+  width: 1.75rem;
+}
+
+.button .sparkle .path {
+  fill: currentColor;
+  stroke: currentColor;
+
+  transform-origin: center;
+
+  color: hsl(0, 0%, 100%);
+}
+
+.button:is(:hover) .sparkle .path {
+  animation: path 1.5s linear 0.5s infinite;
+}
+
+.button .sparkle .path:nth-child(1) {
+  --scale_path_1: 1.2;
+}
+.button .sparkle .path:nth-child(2) {
+  --scale_path_2: 1.2;
+}
+.button .sparkle .path:nth-child(3) {
+  --scale_path_3: 1.2;
+}
+
+@keyframes path {
+  0%,
+  34%,
+  71%,
+  100% {
+    transform: scale(1);
+  }
+  17% {
+    transform: scale(var(--scale_path_1, 1));
+  }
+  49% {
+    transform: scale(var(--scale_path_2, 1));
+  }
+  83% {
+    transform: scale(var(--scale_path_3, 1));
+  }
+}
+
+.button .text_button {
+  position: relative;
+  z-index: 10;
+
+  background-image: linear-gradient(
+    90deg,
+    hsla(0 0% 100% / 1) 0%,
+    hsla(0 0% 100% / var(--active, 0)) 120%
+  );
+  background-clip: text;
+
+  font-size: 1rem;
+  color: transparent;
+}

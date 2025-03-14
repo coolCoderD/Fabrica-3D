@@ -17,6 +17,8 @@ import { AnimePic } from '../config/constants';
 import AiBtn from '../components/AiBtn';
 import FashionPanel from '../components/Sidebar';
 import Tooltip from '../components/Tooltip';
+import { DoorOpen, DownloadIcon } from 'lucide-react';
+import Btn from '../components/Btn';
 
 const animeThemes = {
   naruto: naruto,
@@ -338,6 +340,10 @@ const Customizer = () => {
             {...slideAnimation('left')}
           >
 
+
+
+
+
             <div className="flex  items-center min-h-screen">
               <div ref={editorRef} className="editortabs-container tabs ">
                 {EditorTabs.map((tab) => (
@@ -376,14 +382,19 @@ const Customizer = () => {
           </motion.div>
 
           <motion.div
-            className="absolute z-10 top-5 right-5"
+            className="absolute flex gap-4 z-10 top-5 right-5"
             {...fadeAnimation}
           >
-            <CustomButton
-              type="filled"
-              title="Go Back"
-              handleClick={() => state.intro = true}
-              customStyles="w-fit px-4 py-2.5 font-bold text-lg"
+          <div   onClick={() => state.intro = true}>
+            <AiBtn
+              text="Go back" 
+            />
+            </div>
+            <Btn 
+            text={"Download"}
+            isLoading={isDownloading}
+            onClick={downloadCanvasToImage}
+            icon={<DownloadIcon className='text-white'/>}
             />
           </motion.div>
 
@@ -406,24 +417,14 @@ const Customizer = () => {
             {...fadeAnimation}
           >
 
-<AiBtn text={"Get Recommendations"}
+<AiBtn text={"Get Outfit Recommendations"}
             isLoading={isLoading}
             OnClick={()=>{
               fetchRecommendation();
-              
-            }}/>
-            <FashionPanel  recommendations={recommendations} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-            <CustomButton
-              type="filled"
-              title={isDownloading ? "Downloading..." : "Download Shirt"}
-              handleClick={downloadCanvasToImage}
-              disabled={isDownloading} // Disable button while downloading
-              customStyles={`w-fit px-4 py-2.5 font-bold text-lg
-  ${isDownloading ? "bg-gray-400 animate-pulse" : ""}
-  `}
+            }}
+            isSparkles={true}
             />
-
-
+            <FashionPanel  recommendations={recommendations} isOpen={isOpen} onClose={() => setIsOpen(false)} />
           </motion.div>
 
         </>

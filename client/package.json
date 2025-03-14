@@ -28,6 +28,7 @@
     "react-dom": "^18.2.0",
     "styled-components": "^6.1.15",
     "tailwind-merge": "^3.0.2",
+    "tailwind-scrollbar-hide": "^2.0.0",
     "three": "^0.162.0",
     "valtio": "^1.13.1"
   },
