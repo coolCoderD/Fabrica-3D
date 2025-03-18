@@ -1,6 +1,6 @@
 # **Fabrica 3D 👕👚**  
 <p align="center">
-  <img src="https://res.cloudinary.com/drts3ztiy/image/upload/v1740515684/b47a86e1-d3b3-4f1a-bbd9-06a08d796bb6.png" alt="Fabrica 3D Preview" width="600"/>
+  <img src="https://res.cloudinary.com/drts3ztiy/image/upload/v1742287570/Screenshot_2025-03-18_113845_og7pcj.png" alt="Fabrica 3D Preview" width="600"/>
 </p>
 
 🚀 **Experience AI-powered 3D customization for apparel!**  
