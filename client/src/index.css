@@ -74,6 +74,10 @@ html {
   @apply absolute left-full ml-3 glassmorphism p-3 w-[320px] justify-center items-center h-[320px] flex flex-col rounded-md;
 }
 
+.text-container {
+  @apply absolute left-full ml-3 glassmorphism p-6 w-[520px] justify-center items-center h-[470px] flex flex-col rounded-md;
+}
+
 .filepicker-label {
   @apply border border-gray-300 py-3 px-5 rounded-md h-full w-full shadow-sm 
          text-lg text-gray-300 focus:outline-none focus:ring-2 
@@ -97,6 +101,11 @@ input[type="file"] {
   position: absolute;
   opacity: 0;
 }
+
+input {
+  color: white !important;
+}
+
 
 .sketch-picker {
   width: 320px !important;
@@ -331,3 +340,34 @@ background-size: 300%;
   font-size: 1rem;
   color: transparent;
 }
+
+
+.input-field {
+  @apply glassmorphism w-full border-[2px]  rounded-lg p-3 text-white 
+         placeholder-gray-300 outline-none ;
+}
+
+
+.range-slider {
+  @apply w-full appearance-none h-2 bg-gray-900
+         rounded-lg shadow-lg outline-none cursor-pointer transition-all duration-300;
+}
+
+.range-slider::-webkit-slider-thumb {
+  @apply appearance-none w-6 h-6 rounded-full border-[3px] border-teal-400
+         bg-gray-900 shadow-[0_0_10px_rgba(0,255,255,0.8)]
+         transition-all duration-300
+          hover:shadow-[0_0_20px_rgba(0,255,255,1)]
+         active:scale-90 active:shadow-[0_0_25px_rgba(0,255,255,1)];
+}
+
+/* For Firefox */
+.range-slider::-moz-range-thumb {
+  @apply appearance-none w-6 h-6 rounded-full border-[3px] border-teal-400
+         bg-gray-900 shadow-[0_0_10px_rgba(0,255,255,0.8)]
+         transition-all duration-300
+         hover:shadow-[0_0_20px_rgba(0,255,255,1)]
+         active:scale-90 active:shadow-[0_0_25px_rgba(0,255,255,1)];
+}
+
+

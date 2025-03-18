@@ -12,6 +12,7 @@ import {
     slideAnimation
 } from '../config/motion';
 import AiBtn from '../components/AiBtn';
+import Btn from '../components/Btn';
 
 const Home = () => {
     const snap = useSnapshot(state);
@@ -19,9 +20,10 @@ const Home = () => {
     return (
         <AnimatePresence>
             {snap.intro && (
-                <motion.section className="home" {...slideAnimation('left')}>
-                    <motion.header {...slideAnimation('down')}>
+                <motion.section className="home " {...slideAnimation('left')}>
+                    <motion.header {...slideAnimation('down')} className=''>
                         <img src="./threejs.png" alt="logo" className="w-8 h-8 object-contain" />
+
                     </motion.header>
 
                     <motion.div className="home-content" {...headContainerAnimation}>
@@ -38,6 +40,7 @@ const Home = () => {
                                 <strong>Express your creativity</strong> and craft the perfect look, just for you!
                             </p>
                             <AiBtn text="Start Designing" OnClick={() => (state.intro = false)} isSparkles={true} />
+                        
                         </motion.div>
                     </motion.div>
 

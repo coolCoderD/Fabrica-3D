@@ -17,6 +17,8 @@
     "@million/lint": "^1.0.14",
     "@react-three/drei": "^9.99.5",
     "@react-three/fiber": "^8.15.16",
+    "@uiw/react-color-sketch": "^2.4.4",
+    "@uiw/react-color-wheel": "^2.4.4",
     "3d-shop": "file:",
     "axios": "^1.7.9",
     "framer-motion": "^11.0.8",

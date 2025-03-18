@@ -1,23 +1,28 @@
 import React from 'react'
-import { SketchPicker } from 'react-color'
+import Sketch from '@uiw/react-color-sketch';
 import { useSnapshot } from 'valtio'
 import state from '../store'
 
 const ColorPicker = () => {
   const snap=useSnapshot(state);
   return (
-    <div className='absolute glassmorphism  left-full ml-3 '>
+    <div className='absolute input left-full '>
+<Sketch
+  style={{
+    marginLeft: 20,
+    width: "320px",
+    height: "320px",
+    background: "rgba(0,0,0,0.25)",
+    boxShadow: "0 2px 30px 0 rgba(31, 38, 135, 0.07)",
+    backdropFilter: "blur(4px)",
+    border: "1px solid rgba(0, 0, 0, 0.18)",
+    color:"white",
+  }}
+  color={snap.color}
+  disableAlpha={true}
+  onChange={(color) => (state.color = color.hex)}
+/>
 
-      <SketchPicker
-      color={snap.color}
-      disableAlpha
-      presetColors={[
-        "#ccc", "#EFBD4E", "#F5F5F5", "#FFFFFF", "#2CCCE4", 
-        "#FF5733", "#C70039", "#900C3F", "#581845", "#3498DB",
-        "#27AE60", "#F39C12", "#8E44AD", "#E74C3C", "#2ECC71"
-      ]}
-      onChange={(color)=>state.color=color.hex}
-      />
     </div>
   )
 }

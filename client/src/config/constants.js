@@ -24,6 +24,11 @@ export const EditorTabs = [
     icon: ai,
     tooltip: "Ask AI for design recommendations",
   },
+  // {
+  //   name:"text",
+  //   icon:ai,
+  //   tooltip:"Add text to the design"
+  // },
   {
     name: "logoshapechanger",
   

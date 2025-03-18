@@ -8,6 +8,10 @@ const state = proxy({
   logoDecal: './threejs.png',
   fullDecal: './threejs.png',
   selectedMask: 'square',
+  customText: '',       
+  textSize: 48,          
+  textColor: '#000000',   
+  textPosition: { x: 0, y: -0.22 }, 
 });
 
 export default state;

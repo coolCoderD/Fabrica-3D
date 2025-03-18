@@ -19,6 +19,7 @@ import FashionPanel from '../components/Sidebar';
 import Tooltip from '../components/Tooltip';
 import { DoorOpen, DownloadIcon } from 'lucide-react';
 import Btn from '../components/Btn';
+import TextCustomizer from '../components/TextCoustomizer';
 
 const animeThemes = {
   naruto: naruto,
@@ -35,6 +36,8 @@ const animeColors = {
 const Customizer = () => {
   const snap = useSnapshot(state);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [text, setText] = useState("");
 
   const [file, setFile] = useState('');
 
@@ -61,6 +64,12 @@ const Customizer = () => {
     onePiece: "#1E90FF", // Blue (Luffy's outfit)
   };
   
+
+  const handleTextChange = (e) => {
+    setText(e.target.value);
+    state.customText = e.target.value; // Update Valtio state
+  };
+
   const handleThemeChange = (theme) => {
     if (selectedAnime === theme) {
       setSelectedAnime(""); 
@@ -151,6 +160,8 @@ const Customizer = () => {
         />
       case "logoshapechanger":
         return <ShapeChanger />
+      // case "text":
+      //   return <TextCustomizer/>
       default:
         return null;
     }
@@ -339,10 +350,7 @@ const Customizer = () => {
             className="absolute top-0 left-0 z-10"
             {...slideAnimation('left')}
           >
-
-
-
-
+          
 
             <div className="flex  items-center min-h-screen">
               <div ref={editorRef} className="editortabs-container tabs ">
