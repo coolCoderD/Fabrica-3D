@@ -23,9 +23,9 @@ const demonSlayer = {
   eight: { image: eight, color: "#ff6347" },// Tomato
   nine: { image: nine, color: "#4682b4" },  // Steel Blue
   ten: { image: ten, color: "#dc143c" },    // Crimson
-  eleven: { image: eleven, color: "#00ff7f" }, // Spring Green
-  twelve: { image: twelve, color: "#9400d3" }, // Dark Violet
-  thirteen: { image: thirteen, color: "#ff8c00" } // Dark Orange
+  // eleven: { image: eleven, color: "#00ff7f" }, // Spring Green
+  // twelve: { image: twelve, color: "#9400d3" }, // Dark Violet
+  // thirteen: { image: thirteen, color: "#ff8c00" } // Dark Orange
 };
 
 export default demonSlayer;

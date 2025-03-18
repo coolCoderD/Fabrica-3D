@@ -53,7 +53,7 @@ html {
 
 .anime-container {
   @apply absolute right-full mr-3 glassmorphism p-3 
-    w-[420px] h-[520px] rounded-md 
+    w-[420px] h-[320px] rounded-md 
      gap-3 justify-center;
 
     

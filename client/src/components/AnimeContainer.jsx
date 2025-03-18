@@ -8,7 +8,7 @@ const AnimeContainer = ({ pics,handleDecals }) => {
   const [selectedIndex, setSelectedIndex] = useState(null); // Track selected image index
 
   return (
-    <div className="anime-container grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] grid-rows-5 gap-3 justify-center">
+    <div className="anime-container grid grid-cols-[repeat(auto-fit,minmax(80px,1fr))] grid-rows-3 gap-3 justify-center">
       {pics.map((pic, index) => (
         <img
           key={index}
